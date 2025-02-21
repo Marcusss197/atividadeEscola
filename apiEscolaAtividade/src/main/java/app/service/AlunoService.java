@@ -17,30 +17,41 @@ public class AlunoService {
 	
 	
 	public String save(Aluno aluno) {
-		for(int i=0;i<aluno;i++) {
-			if(aluno.getCpf())
+		Aluno prop = this.alunoRepository.findByCPF(aluno.getCpf());
+		if(prop != null) {
+			throw new RuntimeException("Já existe um aluno com o CPF inserido");
 		}
 		
-		if(aluno.getTelefone() == null)
-			aluno.isCadastroCompleto() = false;
-		else
-			aluno.isCadastroCompleto() = true;
+		if(aluno.getTelefone() == null) {
+			aluno.setCadastroCompleto(false);
+		}else {
+			aluno.setCadastroCompleto(true);
+		}
 		
-		this.alunoRepository.save(aluno); 
-		return "Aluno salvo com sucesso";
+		if (aluno.isCadastroCompleto() == true) {
+			this.alunoRepository.save(aluno); 
+			return "Aluno salvo com sucesso";
+			} else {
+				throw new RuntimeException("Cadastro está incompleto");
+			}
 	}
 	
 
 	public String update(long id, Aluno aluno) {
 		aluno.setId(id);
 		
-		if(aluno.getTelefone() == null)
-			aluno.isCadastroCompleto() = false;
-		else
-			aluno.isCadastroCompleto() = true;
+		if(aluno.getTelefone() == null) {
+			aluno.setCadastroCompleto(false);
+		}else {
+			aluno.setCadastroCompleto(true);
+		}
 		
-		this.alunoRepository.save(aluno); //-> qdo tem ID vira UPDATE livro SET ....
-		return "Informações do aluno salvo com sucesso";
+		if (aluno.isCadastroCompleto() == true) {
+			this.alunoRepository.save(aluno); 
+			return "Aluno salvo com sucesso";
+			} else {
+				throw new RuntimeException("Cadastro está incompleto");
+			}
 	} 
 	
 	public String delete(long id) {
@@ -56,4 +67,16 @@ public class AlunoService {
 		return this.alunoRepository.findAll();
 	}
 
+	public List<Aluno> findByNome(String nome){
+		return this.alunoRepository.findByNome(nome);
+	}
+	
+	public List<Aluno> findByNumero(String numero){
+		return this.alunoRepository.findByNumero(numero);
+	}
+	
+	public List<Aluno> findByTurma(String turma){
+		return this.alunoRepository.findByNome(turma);
+	}
+	
 }

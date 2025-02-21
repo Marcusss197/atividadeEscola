@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.entity.Aluno;
@@ -73,5 +74,39 @@ public class AlunoController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@GetMapping("/findByNome")
+	public ResponseEntity<List<Aluno>> findByNome(@PathVariable String nome){
+		try {
+			return new ResponseEntity<>(this.alunoService.findByNome(nome), HttpStatus.OK);
+		} catch (Exception e) {
+			//deu erro... deu problema
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST );
+
+		}
+	}
+
+	@GetMapping("/findByNumero")
+	public ResponseEntity<List<Aluno>> findByNumero(@PathVariable String numero){
+		try {
+			return new ResponseEntity<>(this.alunoService.findByNumero(numero), HttpStatus.OK);
+		} catch (Exception e) {
+			//deu erro... deu problema
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST );
+
+		}
+	}
+
+	@GetMapping("/findByTurma")
+	public ResponseEntity<List<Aluno>> findByTurma(@PathVariable String turma){
+		try {
+			return new ResponseEntity<>(this.alunoService.findByNumero(turma), HttpStatus.OK);
+		} catch (Exception e) {
+			//deu erro... deu problema
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST );
+
+		}
+	}
+	
 
 }

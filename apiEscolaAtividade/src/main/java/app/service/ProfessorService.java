@@ -24,6 +24,11 @@ public class ProfessorService {
 		if (professor.getCpf().contains("@outlook.com"))
 			throw new RuntimeException("Nn pode outlook po");
 		
+		List<Professor> prop = this.professorRepository.findByEmail(professor.getEmail());
+		if(prop != null) {
+			throw new RuntimeException("Email ja cadastrado");
+		}
+		
 		this.professorRepository.save(professor); 
 		return "Professor salvo com sucesso";
 	}
@@ -47,5 +52,16 @@ public class ProfessorService {
 	public List<Professor> findAll(){
 		return this.professorRepository.findAll();
 	}
+	
+	public List<Professor> buscarPorNomeOuEspecialidade(String nome, String especialidade) {
+	    return professorRepository.findByNomeStartingWithOrEspecialidadeStartingWith(nome, especialidade);
+	}
 
+	public List<Professor> buscarSemEmailGmail() {
+	    return professorRepository.findByEmailNotContaining("@gmail.com");
+	}
+
+	public List<Professor> buscarPorEmail(String email) {
+	    return professorRepository.findByEmail(email);
+	}
 }
