@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import app.entity.Aluno;
 import app.entity.Professor;
 import app.service.ProfessorService;
 
@@ -74,6 +76,21 @@ public class ProfessorController {
 		}
 	}
 	
+	@GetMapping("/findByNome")
+	public ResponseEntity<List<Professor>> findByNome(@RequestParam String nome, String especialidade){
+		try {
+			return new ResponseEntity<>(this.professorService.findByNome(nome,especialidade), HttpStatus.OK);
+		} catch (Exception e) {
+			
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST );
+
+		}
+	}
+	
+	public ResponseEntity<List<Professor>> buscarNaoGmail() {
+	    List<Professor> professores = professorService.buscarNaoGmail();
+	    return ResponseEntity.ok(professores);
+	}
 	
 
 }

@@ -57,11 +57,16 @@ public class ProfessorService {
 	    return professorRepository.findByNomeStartingWithOrEspecialidadeStartingWith(nome, especialidade);
 	}
 
-	public List<Professor> buscarSemEmailGmail() {
-	    return professorRepository.findByEmailNotContaining("@gmail.com");
-	}
-
 	public List<Professor> buscarPorEmail(String email) {
 	    return professorRepository.findByEmail(email);
 	}
+	
+	public List<Professor> findByNome(String nome, String especialidade){
+		return this.professorRepository.findByNomeStartingWithOrEspecialidadeStartingWith(nome,especialidade);
+	}
+	
+	public List<Professor> buscarNaoGmail() {
+        return professorRepository.findByEmailNotContaining("@gmail.com");
+    }
 }
+	
