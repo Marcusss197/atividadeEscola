@@ -10,7 +10,7 @@ import app.entity.Aluno;
 
 public interface AlunoRepository extends JpaRepository<Aluno, Long> {
 
-	public List<Aluno> findByNome(String nome);
+	public List<Aluno> findByNomeStartingwith(String nome);
 	
 	public List<Aluno> findByNumero(String numero);
 	

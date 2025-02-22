@@ -75,34 +75,13 @@ public class AlunoController {
 		}
 	}
 	
+	
 	@GetMapping("/findByNome")
-	public ResponseEntity<List<Aluno>> findByNome(@PathVariable String nome){
+	public ResponseEntity<List<Aluno>> findByNome(@RequestParam String nome){
 		try {
 			return new ResponseEntity<>(this.alunoService.findByNome(nome), HttpStatus.OK);
 		} catch (Exception e) {
-			//deu erro... deu problema
-			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST );
-
-		}
-	}
-
-	@GetMapping("/findByNumero")
-	public ResponseEntity<List<Aluno>> findByNumero(@PathVariable String numero){
-		try {
-			return new ResponseEntity<>(this.alunoService.findByNumero(numero), HttpStatus.OK);
-		} catch (Exception e) {
-			//deu erro... deu problema
-			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST );
-
-		}
-	}
-
-	@GetMapping("/findByTurma")
-	public ResponseEntity<List<Aluno>> findByTurma(@PathVariable String turma){
-		try {
-			return new ResponseEntity<>(this.alunoService.findByNumero(turma), HttpStatus.OK);
-		} catch (Exception e) {
-			//deu erro... deu problema
+			
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST );
 
 		}
