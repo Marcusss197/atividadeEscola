@@ -1,7 +1,6 @@
 package app.service;
 
 import java.util.List;
-import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,17 +65,14 @@ public class AlunoService {
 	public List<Aluno> findAll(){
 		return this.alunoRepository.findAll();
 	}
-
+	
 	public List<Aluno> findByNome(String nome){
-		return this.alunoRepository.findByNome(nome);
+		return this.alunoRepository.findByNomeStartingWith(nome);
 	}
 	
-	public List<Aluno> findByNumero(String numero){
-		return this.alunoRepository.findByNumero(numero);
+	public List<Aluno> findByTelefone(String telefone){
+		return this.alunoRepository.findByTelefoneContaining(telefone);
 	}
-	
-	public List<Aluno> findByTurma(String turma){
-		return this.alunoRepository.findByNome(turma);
-	}
+
 	
 }

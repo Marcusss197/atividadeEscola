@@ -87,5 +87,16 @@ public class AlunoController {
 		}
 	}
 	
+	@GetMapping("/findByTelefone")
+	public ResponseEntity<List<Aluno>> findByTelefone(@RequestParam String telefone){
+		try {
+			return new ResponseEntity<>(this.alunoService.findByTelefone(telefone), HttpStatus.OK);
+		} catch (Exception e) {
+			
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST );
+
+		}
+	}
+	
 
 }
