@@ -12,10 +12,10 @@ public interface TurmaRepository extends JpaRepository<Turma, Long> {
 	
 	public List<Turma> findByAnoBetween(int anoInicio, int anoFim);
 	
-	public List<Turma> findBySemestreAndAno(int semestre, int ano);
+	public List<Turma> findBySemestreAndAno(String semestre, int ano);
 	
-	public List<Turma> findByTurno(String turno);
+	public List<Turma> findByNomeETurno(String nomeTurma, String turno);
 	
-	public List<Turma> findByNomeContaining(String nome);
+	public List<Turma> findByNomeCurso(String curso);
 	
 }

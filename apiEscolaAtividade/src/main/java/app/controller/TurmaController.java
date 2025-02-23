@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.entity.Turma;
@@ -71,6 +72,53 @@ public class TurmaController {
 			return new ResponseEntity<>(lista,HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@GetMapping("/findByAnoBetween")
+	public ResponseEntity<List<Turma>> findByAnoBetween(@RequestParam int anoInicio,
+			@RequestParam int anoFim){
+		try {
+			return new ResponseEntity<>(this.turmaService.findByAnoBetween(anoInicio,anoFim), HttpStatus.OK);
+		} catch (Exception e) {
+			
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST );
+
+		}
+	}
+	
+	@GetMapping("/findBySemestreEAno")
+	public ResponseEntity<List<Turma>> findBySemestreAndAno(@RequestParam String semestre,
+			@RequestParam int ano){
+		try {
+			return new ResponseEntity<>(this.turmaService.findBySemestreAndAno(semestre,ano), HttpStatus.OK);
+		} catch (Exception e) {
+			
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST );
+
+		}
+	}
+	
+	@GetMapping("/findByNomeETurno")
+	public ResponseEntity<List<Turma>> findByNomeETurno(@RequestParam String nomeTurma,
+			@RequestParam String turno){
+		try {
+			return new ResponseEntity<>(this.turmaService.findByNomeETurno(nomeTurma,turno), HttpStatus.OK);
+		} catch (Exception e) {
+			
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST );
+
+		}
+	}
+	
+	@GetMapping("/findByNomeCurso")
+	public ResponseEntity<List<Turma>> findByNomeCurso(@RequestParam String curso){
+		try {
+			return new ResponseEntity<>(this.turmaService.findByNomeCurso(curso), HttpStatus.OK);
+		} catch (Exception e) {
+			
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST );
+
 		}
 	}
 

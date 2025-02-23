@@ -41,20 +41,20 @@ public class TurmaService {
 		return this.turmaRepository.findAll();
 	}
 	
-	public List<Turma> buscarPorAnoEntre(int anoInicio, int anoFim) {
+	public List<Turma> findByAnoBetween(int anoInicio, int anoFim) {
         return turmaRepository.findByAnoBetween(anoInicio, anoFim);
     }
 
-    public List<Turma> buscarPorSemestreEAno(int semestre, int ano) {
+    public List<Turma> findBySemestreAndAno(String semestre, int ano) {
         return turmaRepository.findBySemestreAndAno(semestre, ano);
     }
 
-    public List<Turma> buscarPorTurno(String turno) {
-        return turmaRepository.findByTurno(turno);
+    public List<Turma> findByNomeETurno(String nomeTurma, String turno) {
+        return turmaRepository.findByNomeETurno(nomeTurma,turno);
     }
 
-    public List<Turma> buscarPorNome(String nome) {
-        return turmaRepository.findByNomeContaining(nome);
+    public List<Turma> findByNomeCurso(String curso) {
+        return turmaRepository.findByNomeCurso(curso);
     }
 
 }

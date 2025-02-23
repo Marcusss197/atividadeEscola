@@ -41,7 +41,7 @@ public class CursoService {
 		return this.cursoRepository.findAll();
 	}
 	
-    public List<Curso> buscarPorNome(String nome) {
-        return cursoRepository.findByNomeIgnoreCase(nome);
+    public List<Curso> findByNomeIgnoreCase(String nomeCurso) {
+        return cursoRepository.findByNomeIgnoreCase(nomeCurso);
     }
 }

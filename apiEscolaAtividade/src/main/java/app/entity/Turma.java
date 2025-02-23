@@ -38,7 +38,7 @@ public class Turma {
 	@NotEmpty (message = "o nome da Turma é obrigatorio")
 	private String nomeTurma;
 	private String semestre;
-	private String ano;
+	private long ano;
 	private String turno;
 	
 	@OneToMany

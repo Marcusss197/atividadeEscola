@@ -98,5 +98,16 @@ public class AlunoController {
 		}
 	}
 	
+	@GetMapping("/findByTurma")
+	public ResponseEntity<List<Aluno>> findByTurma(@RequestParam String turma){
+		try {
+			return new ResponseEntity<>(this.alunoService.findByTurma(turma), HttpStatus.OK);
+		} catch (Exception e) {
+			
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST );
+
+		}
+	}
+	
 
 }
