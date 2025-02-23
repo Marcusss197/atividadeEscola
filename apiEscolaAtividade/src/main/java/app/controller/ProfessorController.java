@@ -87,10 +87,25 @@ public class ProfessorController {
 		}
 	}
 	
+	@GetMapping("/naogmail")
 	public ResponseEntity<List<Professor>> buscarNaoGmail() {
 	    List<Professor> professores = professorService.buscarNaoGmail();
 	    return ResponseEntity.ok(professores);
 	}
+	
+	
+	@GetMapping("/findByEmail")
+	public ResponseEntity<List<Professor>> findByNome(@RequestParam String email){
+		try {
+			return new ResponseEntity<>(this.professorService.findByEmail(email), HttpStatus.OK);
+		} catch (Exception e) {
+			
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST );
+
+		}
+	}
+
+	
 	
 
 }
