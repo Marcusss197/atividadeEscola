@@ -54,7 +54,7 @@ public class ProfessorService {
 	}
 	
 	public List<Professor> buscarPorNomeOuEspecialidade(String nome, String especialidade) {
-	    return professorRepository.findByNomeStartingWithOrEspecialidadeStartingWith(nome, especialidade);
+	    return professorRepository.findByNomeProfessorStartingWithOrEspecialidadeStartingWith(nome, especialidade);
 	}
 
 	public List<Professor> findByEmail(String email) {
@@ -62,7 +62,7 @@ public class ProfessorService {
 	}
 	
 	public List<Professor> findByNome(String nome, String especialidade){
-		return this.professorRepository.findByNomeStartingWithOrEspecialidadeStartingWith(nome,especialidade);
+		return this.professorRepository.findByNomeProfessorStartingWithOrEspecialidadeStartingWith(nome,especialidade);
 	}
 	
 	public List<Professor> buscarNaoGmail() {

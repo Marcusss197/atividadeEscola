@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.entity.Aluno;
+import app.entity.Turma;
 import app.service.AlunoService;
 
 @RestController
@@ -77,9 +78,9 @@ public class AlunoController {
 	
 	
 	@GetMapping("/findByNome")
-	public ResponseEntity<List<Aluno>> findByNome(@RequestParam String nome){
+	public ResponseEntity<List<Aluno>> findByNome(@RequestParam String nomeAluno){
 		try {
-			return new ResponseEntity<>(this.alunoService.findByNome(nome), HttpStatus.OK);
+			return new ResponseEntity<>(this.alunoService.findByNome(nomeAluno), HttpStatus.OK);
 		} catch (Exception e) {
 			
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST );
@@ -99,7 +100,7 @@ public class AlunoController {
 	}
 	
 	@GetMapping("/findByTurma")
-	public ResponseEntity<List<Aluno>> findByTurma(@RequestParam String turma){
+	public ResponseEntity<List<Aluno>> findByTurma(@RequestParam Turma turma){
 		try {
 			return new ResponseEntity<>(this.alunoService.findByTurma(turma), HttpStatus.OK);
 		} catch (Exception e) {

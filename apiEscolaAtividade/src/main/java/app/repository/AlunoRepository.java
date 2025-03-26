@@ -1,20 +1,19 @@
 package app.repository;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import app.entity.Aluno;
+import app.entity.Turma;
 
 public interface AlunoRepository extends JpaRepository<Aluno, Long> {
 
-	public List<Aluno> findByNomeStartingWith(String nome);
+	public List<Aluno> findByNomeAlunoStartingWith(String nomeAluno);
 	
 	public List<Aluno> findByTelefoneContaining(String telefone);
 	
-	public List<Aluno> findByTurma(String turma);
+	public List<Aluno> findByTurma(Turma turma);
 	
-	public Aluno findByCPF(String cpf);
+	public Aluno findByCpf(String cpf);
 }
