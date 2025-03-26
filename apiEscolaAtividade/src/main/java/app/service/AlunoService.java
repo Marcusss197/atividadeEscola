@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.entity.Aluno;
+import app.entity.Turma;
 import app.repository.AlunoRepository;
 
 @Service
@@ -16,7 +17,7 @@ public class AlunoService {
 	
 	
 	public String save(Aluno aluno) {
-		Aluno prop = this.alunoRepository.findByCPF(aluno.getCpf());
+		Aluno prop = this.alunoRepository.findByCpf(aluno.getCpf());
 		if(prop != null) {
 			throw new RuntimeException("Já existe um aluno com o CPF inserido");
 		}
@@ -66,16 +67,17 @@ public class AlunoService {
 		return this.alunoRepository.findAll();
 	}
 	
-	public List<Aluno> findByNome(String nome){
-		return this.alunoRepository.findByNomeStartingWith(nome);
+	public List<Aluno> findByNome(String nomeAluno){
+		return this.alunoRepository.findByNomeAlunoStartingWith(nomeAluno);
 	}
 	
 	public List<Aluno> findByTelefone(String telefone){
 		return this.alunoRepository.findByTelefoneContaining(telefone);
 	}
 	
-	public List<Aluno> findByTurma(String turma){
-		return this.alunoRepository.findByTelefoneContaining(turma);
+	public List<Aluno> findByTurma(Turma turma){
+		return this.alunoRepository.findByTurma(turma);
 
 	}
+	
 }

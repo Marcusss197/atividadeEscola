@@ -42,6 +42,6 @@ public class CursoService {
 	}
 	
     public List<Curso> findByNomeIgnoreCase(String nomeCurso) {
-        return cursoRepository.findByNomeIgnoreCase(nomeCurso);
+        return cursoRepository.findByNomeCursoIgnoreCase(nomeCurso);
     }
 }

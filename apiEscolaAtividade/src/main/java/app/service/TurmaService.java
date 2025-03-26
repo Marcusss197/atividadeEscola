@@ -50,11 +50,11 @@ public class TurmaService {
     }
 
     public List<Turma> findByNomeETurno(String nomeTurma, String turno) {
-        return turmaRepository.findByNomeETurno(nomeTurma,turno);
+        return turmaRepository.findByNomeTurmaAndTurno(nomeTurma,turno);
     }
 
     public List<Turma> findByNomeCurso(String curso) {
-        return turmaRepository.findByNomeCurso(curso);
+        return turmaRepository.findByCursoNomeCurso(curso);
     }
 
 }

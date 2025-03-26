@@ -11,7 +11,7 @@ import app.entity.Professor;
 
 public interface ProfessorRepository extends JpaRepository<Professor, Long> {
 	
-	public List<Professor> findByNomeStartingWithOrEspecialidadeStartingWith(String nome, String especialidade);
+	public List<Professor> findByNomeProfessorStartingWithOrEspecialidadeStartingWith(String nome, String especialidade);
 	
 	public List<Professor> findByEmailNotContaining(String email);
 	
