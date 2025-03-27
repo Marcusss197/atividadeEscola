@@ -25,7 +25,7 @@ public class ProfessorService {
 			throw new RuntimeException("Nn pode outlook po");
 		
 		List<Professor> prop = this.professorRepository.findByEmail(professor.getEmail());
-		if(prop != null) {
+		if(prop.size() > 0) {
 			throw new RuntimeException("Email ja cadastrado");
 		}
 		

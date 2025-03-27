@@ -34,12 +34,13 @@ public class ProfessorController {
 			String mensagem = this.professorService.save(professor);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return new ResponseEntity<>("Deu erro!", HttpStatus.BAD_REQUEST);
 		}
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> delete(@PathVariable long id){
+	public ResponseEntity<String> delete(@PathVariable("id") long id){
 		try {
 			String mensagem = this.professorService.delete(id);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
