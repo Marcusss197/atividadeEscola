@@ -49,7 +49,7 @@ public class AlunoController {
 	}
 	
 	@GetMapping("/findById/{id}")
-	public ResponseEntity<Aluno> findById(@PathVariable long id){
+	public ResponseEntity<Aluno> findById(@PathVariable("id") long id){
 		try {
 			Aluno aluno = this.alunoService.findById(id);
 			return new ResponseEntity<>(aluno, HttpStatus.OK);
@@ -59,7 +59,7 @@ public class AlunoController {
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String> update(@PathVariable long id, @RequestBody Aluno aluno){
+	public ResponseEntity<String> update(@PathVariable("id") long id, @RequestBody Aluno aluno){
 		try {
 			String mensagem = this.alunoService.update(id, aluno);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);

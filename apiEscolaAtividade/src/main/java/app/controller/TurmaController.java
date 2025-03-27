@@ -38,7 +38,7 @@ public class TurmaController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> delete(@PathVariable long id){
+	public ResponseEntity<String> delete(@PathVariable("id") long id){
 		try {
 			String mensagem = this.turmaService.delete(id);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
@@ -48,7 +48,7 @@ public class TurmaController {
 	}
 	
 	@GetMapping("/findById/{id}")
-	public ResponseEntity<Turma> findById(@PathVariable long id){
+	public ResponseEntity<Turma> findById(@PathVariable("id") long id){
 		try {
 			Turma turma = this.turmaService.findById(id);
 			return new ResponseEntity<>(turma, HttpStatus.OK);
@@ -58,7 +58,7 @@ public class TurmaController {
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String> update(@PathVariable long id, @RequestBody Turma turma){
+	public ResponseEntity<String> update(@PathVariable("id")long id, @RequestBody Turma turma){
 		try {
 			String mensagem = this.turmaService.update(id, turma);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
