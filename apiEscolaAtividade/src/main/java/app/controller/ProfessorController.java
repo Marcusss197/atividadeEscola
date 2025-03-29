@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import app.service.ProfessorService;
 
 @RestController
 @RequestMapping("api/professor")
+@CrossOrigin ("*")
 public class ProfessorController {
 	
 	@Autowired
@@ -32,12 +34,13 @@ public class ProfessorController {
 			String mensagem = this.professorService.save(professor);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return new ResponseEntity<>("Deu erro!", HttpStatus.BAD_REQUEST);
 		}
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> delete(@PathVariable long id){
+	public ResponseEntity<String> delete(@PathVariable("id") long id){
 		try {
 			String mensagem = this.professorService.delete(id);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
@@ -47,7 +50,7 @@ public class ProfessorController {
 	}
 	
 	@GetMapping("/findById/{id}")
-	public ResponseEntity<Professor> findById(@PathVariable long id){
+	public ResponseEntity<Professor> findById(@PathVariable("id") long id){
 		try {
 			Professor professor = this.professorService.findById(id);
 			return new ResponseEntity<>(professor, HttpStatus.OK);
@@ -57,7 +60,7 @@ public class ProfessorController {
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String> update(@PathVariable long id, @RequestBody Professor professor){
+	public ResponseEntity<String> update(@PathVariable("id") long id, @RequestBody Professor professor){
 		try {
 			String mensagem = this.professorService.update(id, professor);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);

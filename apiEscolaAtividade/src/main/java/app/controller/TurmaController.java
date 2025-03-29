@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import app.service.TurmaService;
 
 @RestController
 @RequestMapping("api/turma")
+@CrossOrigin ("*")
 public class TurmaController {
 	
 	@Autowired
@@ -36,7 +38,7 @@ public class TurmaController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> delete(@PathVariable long id){
+	public ResponseEntity<String> delete(@PathVariable("id") long id){
 		try {
 			String mensagem = this.turmaService.delete(id);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
@@ -46,7 +48,7 @@ public class TurmaController {
 	}
 	
 	@GetMapping("/findById/{id}")
-	public ResponseEntity<Turma> findById(@PathVariable long id){
+	public ResponseEntity<Turma> findById(@PathVariable("id") long id){
 		try {
 			Turma turma = this.turmaService.findById(id);
 			return new ResponseEntity<>(turma, HttpStatus.OK);
@@ -56,7 +58,7 @@ public class TurmaController {
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String> update(@PathVariable long id, @RequestBody Turma turma){
+	public ResponseEntity<String> update(@PathVariable("id")long id, @RequestBody Turma turma){
 		try {
 			String mensagem = this.turmaService.update(id, turma);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);

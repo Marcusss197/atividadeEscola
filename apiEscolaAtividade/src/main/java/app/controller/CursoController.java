@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import app.service.CursoService;
 
 @RestController
 @RequestMapping("api/curso")
+@CrossOrigin ("*")
 public class CursoController {
 	
 	@Autowired
@@ -36,7 +38,7 @@ public class CursoController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> delete(@PathVariable long id){
+	public ResponseEntity<String> delete(@PathVariable("id")long id){
 		try {
 			String mensagem = this.cursoService.delete(id);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
@@ -46,7 +48,7 @@ public class CursoController {
 	}
 	
 	@GetMapping("/findById/{id}")
-	public ResponseEntity<Curso> findById(@PathVariable long id){
+	public ResponseEntity<Curso> findById(@PathVariable("id")long id){
 		try {
 			Curso curso = this.cursoService.findById(id);
 			return new ResponseEntity<>(curso, HttpStatus.OK);
@@ -56,7 +58,7 @@ public class CursoController {
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String> update(@PathVariable long id, @RequestBody Curso curso){
+	public ResponseEntity<String> update(@PathVariable("id")long id, @RequestBody Curso curso){
 		try {
 			String mensagem = this.cursoService.update(id, curso);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
