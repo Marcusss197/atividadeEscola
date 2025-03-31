@@ -53,6 +53,7 @@ public class CursoController {
 			Curso curso = this.cursoService.findById(id);
 			return new ResponseEntity<>(curso, HttpStatus.OK);
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}

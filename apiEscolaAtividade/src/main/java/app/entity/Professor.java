@@ -15,6 +15,8 @@ import java.util.List;
 
 import org.hibernate.validator.constraints.br.CPF;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -48,11 +50,4 @@ public class Professor {
 	(regexp = "^\\S+\\s+\\S+.*$", message = "a especialidade (em caso de haver uma) deve conter duas palavras")
 	private String especialidade;
 	
-	@ManyToOne
-	@JoinColumn(name = "turma_id")
-	private Turma turma;
-	
-	@OneToMany
-	(mappedBy = "professor")
-    private List<Turma> turmas; 
 }
